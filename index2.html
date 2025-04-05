@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #b3b3b3;
+        }
+
+        .highlight {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff66b2;
+            margin-bottom: 20px;
+        }
+
+        .music-player {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .album-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+        }
+
+        .song-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .song-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .artist {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+        }
+
+        .play-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #b3b3b3;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Que tal dar play na música</h2>
+    <h1 class="highlight">que me lembra dos nossos momentos juntos?</h1>
+    
+    <div class="music-player">
+        <img src="https://i.scdn.co/image/ab67616d0000b27399cd4d4c9182b0b5f69922b5" alt="Capa do Álbum" class="album-cover">
+        <div class="song-info">
+            <p class="song-title">All of Me</p>
+            <p class="artist">John Legend</p>
+        </div>
+        <button class="play-button" onclick="playMusic()">
+            <img src="https://cdn-icons-png.flaticon.com/512/27/27223.png" alt="Play" width="30">
+        </button>
+    </div>
+    
+    <p class="subtitle">Dê play na música e continue rolando para reviver nossos momentos especiais...</p>
+
+    <script>
+        function playMusic() {
+            window.open("https://open.spotify.com/track/3U4isOIWM3VvDubwSI3y7a", "_blank");
+        }
+    </script>
+</body>
+</html>
