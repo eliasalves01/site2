@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Netflix do Amor</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -81,14 +84,14 @@
     }
 
     .text-container {
-  max-width: 90%;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-  line-height: 1.5;
-  font-weight: 700;
-  z-index: 10;
-  white-space: pre-line; /* Isso é essencial para manter as quebras de linha */
-}
+      max-width: 90%;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      line-height: 1.5;
+      font-weight: 700;
+      z-index: 10;
+      white-space: pre-line;
+    }
 
     .visible {
       opacity: 1;
@@ -120,7 +123,8 @@
     header.show, main.show {
       opacity: 1;
     }
-.logo {
+
+    .logo {
       font-size: 1.5rem;
       font-weight: bold;
       color: #e50914;
@@ -159,7 +163,7 @@
       }
       
       nav ul li a {
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
     }
 
@@ -199,7 +203,7 @@
 
     .banner-content {
       position: relative;
-      z-index: 1;
+      z-index: 10;
       max-width: 600px;
     }
 
@@ -262,7 +266,7 @@
       transform: scale(1.1);
     }
 
-    /* Música Especial - Ajustes de proporção */
+    /* Música Especial */
     .music-section {
       position: fixed;
       top: 0;
@@ -382,118 +386,129 @@
       60% {transform: translateY(-10px) translateX(-50%);}
     }
 
-
     .hidden {
-  display: none;
-}
+      display: none;
+    }
 
-#video-modal {
-  transition: opacity 0.3s ease;
-}
+    #video-modal {
+      transition: opacity 0.3s ease;
+    }
 
-#video-modal video {
-  max-height: 90vh;
-}
+    #video-modal video {
+      max-height: 90vh;
+    }
 
+    /* Animação dos corações */
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+      overflow: hidden;
+    }
 
-/* Animação dos corações - caindo de cima para baixo */
-#hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 100;
-  overflow: hidden;
-}
+    .heart {
+      position: absolute;
+      top: -50px;
+      pointer-events: none;
+      font-size: 24px;
+      animation: fall-down 4s linear forwards;
+      transform-origin: center;
+      opacity: 0.8;
+      will-change: transform, opacity;
+    }
 
-.heart {
-  position: absolute;
-  top: -50px; /* Começa acima da tela */
-  pointer-events: none;
-  font-size: 24px;
-  animation: fall-down 4s linear forwards;
-  transform-origin: center;
-  opacity: 0.8;
-  will-change: transform, opacity;
-}
+    @keyframes fall-down {
+      0% {
+        transform: translateY(0) translateX(var(--start-x)) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(var(--end-x)) rotate(360deg);
+        opacity: 0;
+      }
+    }
 
-@keyframes fall-down {
-  0% {
-    transform: translateY(0) translateX(var(--start-x)) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) translateX(var(--end-x)) rotate(360deg);
-    opacity: 0;
-  }
-}
+    /* Estilo do botão de voz */
+    .btn-voice {
+      background: rgba(109, 109, 110, 0.7);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
 
-/* Efeito de pulsar quando está ouvindo */
-@keyframes pulse-scale {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
+    .btn-voice:hover {
+      background: rgba(109, 109, 110, 0.9);
+    }
 
-.listening {
-  animation: pulse-scale 1.5s infinite, pulse-red 1.5s infinite;
-}
+    .btn-voice.listening {
+      background: #e50914;
+      animation: pulse 1.5s infinite;
+    }
 
-@keyframes pulse-red {
-  0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
-}
+    .voice-status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      min-height: 20px;
+      color: rgba(255, 255, 255, 0.9);
+    }
 
-/* Estilo do botão de voz */
-.btn-voice {
-  background: rgba(109, 109, 110, 0.7);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-}
+    /* Ajuste para os botões ficarem alinhados */
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-.btn-voice:hover {
-  background: rgba(109, 109, 110, 0.9);
-}
+    /* Animação de escuta */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+    }
 
-.btn-voice.listening {
-  background: #e50914;
-  animation: pulse 1.5s infinite;
-}
-
-.voice-status {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  min-height: 20px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Ajuste para os botões ficarem alinhados */
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* Animação de escuta */
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
-}
+    /* Estilos para mobile */
+    @media (max-width: 768px) {
+      .banner {
+        padding: 30px 20px;
+      }
+      
+      .banner-content h1 {
+        font-size: 2rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .btn-play, .btn-list, .btn-voice {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      /* Ajuste para o vídeo */
+      #main-video {
+        object-position: center;
+      }
+      
+      .heart {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -535,19 +550,20 @@
       </ul>
     </nav>
   </header>
-   <!-- Adicione isso antes do </body> -->
-<div id="video-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-  <div class="relative w-full max-w-4xl">
-    <button id="close-modal" class="absolute -top-10 right-0 text-white text-2xl">✕</button>
-    <video id="modal-video" controls class="w-full">
-      <source src="video.mp4" type="video/mp4">
-      Seu navegador não suporta vídeos em HTML5.
-    </video>
+
+  <div id="video-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+    <div class="relative w-full max-w-4xl">
+      <button id="close-modal" class="absolute -top-10 right-0 text-white text-2xl">✕</button>
+      <video id="modal-video" controls class="w-full">
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
+      </video>
+    </div>
   </div>
-</div>
+
   <main>
     <section class="banner">
-      <video id="main-video" autoplay muted loop>
+      <video id="main-video" autoplay muted loop playsinline>
         <source src="video.mp4" type="video/mp4">
         Seu navegador não suporta vídeos em HTML5.
       </video>
@@ -585,196 +601,240 @@
   </main>
 
   <script>
-
-function setupVoiceRecognition() {
-  const VoiceBtn = document.getElementById('voice-btn');
-  const VoiceStatus = document.getElementById('voice-status');
-    
-  // Remove o container existente se já houver
-    const existingContainer = document.getElementById('hearts-container');
-    if (existingContainer) {
-      existingContainer.remove();
-    }
-
-    // Cria um novo container
-    const HeartsContainer = document.createElement('div');
-    HeartsContainer.id = 'hearts-container';
-    document.body.appendChild(HeartsContainer);
-
-  // Verifica suporte
-  if (!('webkitSpeechRecognition' in window)) {
-    VoiceBtn.disabled = true;
-    VoiceStatus.textContent = 'Recurso não suportado no seu navegador';
-    return;
-  }
-
-  const Recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  Recognition.lang = 'pt-BR';
-  Recognition.interimResults = false;
-  Recognition.continuous = false; // Modo único (não contínuo)
-  Recognition.maxAlternatives = 1;
-
-  VoiceBtn.addEventListener('click', () => {
-    VoiceStatus.textContent = 'Escutando... diga "Eu te amo"';
-    VoiceBtn.classList.add('listening');
-    Recognition.start();
-    
-    // Timeout para evitar o erro no-speech
-    setTimeout(() => {
-      if (VoiceBtn.classList.contains('listening')) {
-        Recognition.stop();
-        VoiceStatus.textContent = 'Não ouvi nada... tente novamente!';
-        VoiceBtn.classList.remove('listening');
+    // Função para calcular tempo de relacionamento
+    function calcularTempoRelacionamento() {
+      const dataInicio = new Date(2025, 1, 21); // 21/02/2025
+      const dataAtual = new Date();
+      
+      if (dataAtual < dataInicio) {
+        const diffMs = dataInicio - dataAtual;
+        const diasFaltantes = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        return `Faltam ${diasFaltantes} dias para começarmos nossa jornada juntos 💕`;
       }
-    }, 5000); // 5 segundos de timeout
-  });
 
-  Recognition.onresult = (event) => {
-    const speechResult = event.results[0][0].transcript.trim().toLowerCase();
-    VoiceBtn.classList.remove('listening');
-    
-    if (speechResult.includes('eu te amo')) {
-      createHearts();
-      VoiceStatus.innerHTML = '💖 <strong>Eu te amo mais!</strong> 💖';
-      new Audio('https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3').play();
-    } else {
-      VoiceStatus.textContent = `Você disse: "${speechResult}"`;
+      const diffMs = dataAtual - dataInicio;
+      const horasTotais = Math.floor(diffMs / (1000 * 60 * 60));
+      const diasTotais = Math.floor(horasTotais / 24);
+      const semanas = Math.floor(diasTotais / 7);
+      const meses = Math.floor(diasTotais / 30);
+      const semanasNoMes = semanas % 4;
+      const diasRestantes = diasTotais % 7;
+
+      if (diasRestantes === 0) {
+        return `Estamos juntos a:\n           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'}.\nSão ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
+      }
+
+      return `Estamos juntos a:\n           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'} e\n           ${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}.\nSão ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
     }
-  };
 
-  Recognition.onerror = (event) => {
-    VoiceBtn.classList.remove('listening');
-    
-    if (event.error === 'no-speech') {
-      VoiceStatus.textContent = 'Não detectei sua voz... tente novamente!';
-    } else {
-      VoiceStatus.textContent = `Erro: ${event.error}`;
+    // Configuração do reconhecimento de voz
+    function setupVoiceRecognition() {
+      const VoiceBtn = document.getElementById('voice-btn');
+      const VoiceStatus = document.getElementById('voice-status');
+      
+      // Remove container existente se houver
+      const existingContainer = document.getElementById('hearts-container');
+      if (existingContainer) {
+        existingContainer.remove();
+      }
+
+      // Cria novo container
+      const HeartsContainer = document.createElement('div');
+      HeartsContainer.id = 'hearts-container';
+      document.body.appendChild(HeartsContainer);
+
+      // Verifica suporte
+      if (!('webkitSpeechRecognition' in window)) {
+        VoiceBtn.disabled = true;
+        VoiceStatus.textContent = 'Recurso não suportado no seu navegador';
+        return;
+      }
+
+      const Recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      Recognition.lang = 'pt-BR';
+      Recognition.interimResults = false;
+      Recognition.continuous = false;
+      Recognition.maxAlternatives = 1;
+
+      // Configurações específicas para mobile
+      Recognition.onstart = function() {
+        VoiceStatus.textContent = 'Fale agora...';
+        // Timeout maior para mobile
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          this.timeout = setTimeout(() => {
+            if (VoiceBtn.classList.contains('listening')) {
+              Recognition.stop();
+              VoiceStatus.textContent = 'Tempo esgotado, tente novamente!';
+              VoiceBtn.classList.remove('listening');
+            }
+          }, 10000); // 10 segundos para mobile
+        }
+      };
+
+      VoiceBtn.addEventListener('click', function() {
+        VoiceStatus.textContent = 'Preparando...';
+        VoiceBtn.classList.add('listening');
+        
+        // Solicita permissão de microfone primeiro
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(() => {
+            VoiceStatus.textContent = 'Diga "Eu te amo" agora...';
+            Recognition.start();
+          })
+          .catch(err => {
+            VoiceStatus.textContent = 'Permissão do microfone negada!';
+            VoiceBtn.classList.remove('listening');
+            console.error('Erro de permissão:', err);
+          });
+      });
+
+      Recognition.onresult = function(event) {
+        clearTimeout(this.timeout);
+        const speechResult = event.results[0][0].transcript.trim().toLowerCase();
+        VoiceBtn.classList.remove('listening');
+        
+        if (speechResult.includes('eu te amo')) {
+          createHearts();
+          VoiceStatus.innerHTML = '💖 <strong>Eu te amo mais!</strong> 💖';
+          new Audio('https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3').play();
+        } else {
+          VoiceStatus.textContent = `Você disse: "${speechResult}"`;
+        }
+      };
+
+      Recognition.onerror = function(event) {
+        clearTimeout(this.timeout);
+        VoiceBtn.classList.remove('listening');
+        
+        if (event.error === 'no-speech' && /Mobile/i.test(navigator.userAgent)) {
+          VoiceStatus.textContent = 'Não detectei voz. Toque para tentar novamente!';
+        } else {
+          VoiceStatus.textContent = `Erro: ${event.error}`;
+        }
+      };
+
+      Recognition.onend = function() {
+        VoiceBtn.classList.remove('listening');
+      };
+
+      function createHearts() {
+        HeartsContainer.innerHTML = '';
+        
+        // Cria 50 corações
+        for (let i = 0; i < 50; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          
+          // Tipos diferentes de corações
+          const hearts = ['❤️', '💖', '💗', '💓', '💘'];
+          heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+          
+          // Posição inicial aleatória no topo
+          const startX = Math.random() * 100;
+          const endX = (Math.random() - 0.5) * 40; // Variação horizontal
+          
+          heart.style.setProperty('--start-x', `${startX}vw`);
+          heart.style.setProperty('--end-x', `${endX}px`);
+          heart.style.left = `${startX}vw`;
+          
+          // Tamanho e duração aleatórios
+          const size = Math.random() * 20 + 15;
+          heart.style.fontSize = `${size}px`;
+          
+          const duration = Math.random() * 3 + 4;
+          heart.style.animationDuration = `${duration}s`;
+          heart.style.animationDelay = `${Math.random() * 2}s`;
+          
+          HeartsContainer.appendChild(heart);
+        }
+        
+        // Limpa os corações após a animação terminar
+        setTimeout(() => {
+          HeartsContainer.innerHTML = '';
+        }, 6000);
+      }
     }
-  };
 
-  Recognition.onend = () => {
-    VoiceBtn.classList.remove('listening');
-  };
+    // Configuração do vídeo
+    function setupVideo() {
+      const mainVideo = document.getElementById('main-video');
+      mainVideo.muted = true;
+      mainVideo.playsInline = true; // Importante para iOS
+      
+      // Tenta autoplay
+      const playPromise = mainVideo.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Fallback para mobile: mostra botão de play
+          const playButton = document.createElement('button');
+          playButton.innerHTML = '▶ Toque para iniciar o vídeo';
+          playButton.style.position = 'absolute';
+          playButton.style.bottom = '20px';
+          playButton.style.left = '50%';
+          playButton.style.transform = 'translateX(-50%)';
+          playButton.style.zIndex = '10';
+          playButton.style.padding = '10px 20px';
+          playButton.style.backgroundColor = 'rgba(0,0,0,0.7)';
+          playButton.style.color = 'white';
+          playButton.style.border = 'none';
+          playButton.style.borderRadius = '5px';
+          
+          playButton.addEventListener('click', () => {
+            mainVideo.play();
+            playButton.remove();
+          });
+          
+          document.querySelector('.banner').appendChild(playButton);
+        });
+      }
+    }
 
-  function createHearts() {
-  HeartsContainer.innerHTML = '';
-  
-  // Cria 50 corações
-  for (let i = 0; i < 50; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    
-    // Tipos diferentes de corações
-    const hearts = ['❤️', '💖', '💗', '💓', '💘'];
-    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-    
-    // Posição inicial aleatória no topo
-    const startX = Math.random() * 100;
-    const endX = (Math.random() - 0.5) * 40; // Variação horizontal
-    
-    heart.style.setProperty('--start-x', `${startX}vw`);
-    heart.style.setProperty('--end-x', `${endX}px`);
-    heart.style.left = `${startX}vw`;
-    
-    // Tamanho e duração aleatórios
-    const size = Math.random() * 20 + 15;
-    heart.style.fontSize = `${size}px`;
-    
-    const duration = Math.random() * 3 + 4;
-    heart.style.animationDuration = `${duration}s`;
-    heart.style.animationDelay = `${Math.random() * 2}s`;
-    
-    HeartsContainer.appendChild(heart);
-  }
-  
-  // Limpa os corações após a animação terminar
-  setTimeout(() => {
-    HeartsContainer.innerHTML = '';
-  }, 6000);
-} 
-}
-// Adicione isso no final do seu script, junto com as outras inicializações
-document.addEventListener('DOMContentLoaded', setupVoiceRecognition);   
-    
-// Adicione no início do seu script, com as outras variáveis
-const btnPlay = document.querySelector('.btn-play');
-const videoModal = document.getElementById('video-modal');
-const modalVideo = document.getElementById('modal-video');
-const closeModal = document.getElementById('close-modal');
-const bgMusic = document.getElementById('bg-music');
+    // Configuração do modal de vídeo
+    function setupVideoModal() {
+      const btnPlay = document.querySelector('.btn-play');
+      const videoModal = document.getElementById('video-modal');
+      const modalVideo = document.getElementById('modal-video');
+      const closeModal = document.getElementById('close-modal');
+      const bgMusic = document.getElementById('bg-music');
 
-// Adicione esses event listeners no final do seu script, antes do DOMContentLoaded
-btnPlay.addEventListener('click', () => {
-  videoModal.classList.remove('hidden');
-  modalVideo.play();
-  bgMusic.pause(); // Pausa a música quando o vídeo é aberto
-});
+      btnPlay.addEventListener('click', () => {
+        videoModal.classList.remove('hidden');
+        modalVideo.play();
+        bgMusic.pause();
+      });
 
-closeModal.addEventListener('click', () => {
-  modalVideo.pause();
-  videoModal.classList.add('hidden');
-  bgMusic.play(); // Retoma a música quando o vídeo é fechado
-});
+      closeModal.addEventListener('click', () => {
+        modalVideo.pause();
+        videoModal.classList.add('hidden');
+        bgMusic.play();
+      });
 
-// Fechar modal ao clicar fora do vídeo
-videoModal.addEventListener('click', (e) => {
-  if (e.target === videoModal) {
-    modalVideo.pause();
-    videoModal.classList.add('hidden');
-    bgMusic.play(); // Retoma a música quando o vídeo é fechado
-  }
-});
+      videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+          modalVideo.pause();
+          videoModal.classList.add('hidden');
+          bgMusic.play();
+        }
+      });
 
-// Pausar música quando o vídeo começar a tocar
-modalVideo.addEventListener('play', () => {
-  bgMusic.pause();
-});
+      modalVideo.addEventListener('play', () => {
+        bgMusic.pause();
+      });
 
-// Retomar música quando o vídeo for pausado (exceto quando o modal estiver fechado)
-modalVideo.addEventListener('pause', () => {
-  if (!videoModal.classList.contains('hidden')) {
-    bgMusic.play();
-  }
-});
+      modalVideo.addEventListener('pause', () => {
+        if (!videoModal.classList.contains('hidden')) {
+          bgMusic.play();
+        }
+      });
+    }
 
-
-function calcularTempoRelacionamento() {
-  const dataInicio = new Date(2025, 1, 21); // 21/02/2025
-  const dataAtual = new Date();
-  
-  if (dataAtual < dataInicio) {
-    const diffMs = dataInicio - dataAtual;
-    const diasFaltantes = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    return `Faltam ${diasFaltantes} dias para começarmos nossa jornada juntos 💕`;
-  }
-
-  const diffMs = dataAtual - dataInicio;
-  const horasTotais = Math.floor(diffMs / (1000 * 60 * 60));
-  const diasTotais = Math.floor(horasTotais / 24);
-  const semanas = Math.floor(diasTotais / 7);
-  const meses = Math.floor(diasTotais / 30);
-  const semanasNoMes = semanas % 4;
-  const diasRestantes = diasTotais % 7;
-
-  // Formatação com quebras de linha
-  if (diasRestantes === 0) {
-    return `Estamos juntos a:\n` +
-           `           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n` +
-           `           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'}.\n` +
-           `São ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
-  }
-
-  return `Estamos juntos a:\n` +
-         `           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n` +
-         `           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'} e\n` +
-         `           ${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}.\n` +
-         `São ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
-}
+    // Inicialização da página
     const texts = [
       "Cada momento ao seu lado é uma memória eterna...",
       "Seu sorriso ilumina meu universo escuro.",
       "Que nossos caminhos sejam sempre entrelaçados.",
-      calcularTempoRelacionamento(), // Texto dinâmico
+      calcularTempoRelacionamento(),
       "te amo",
     ];
 
@@ -785,7 +845,6 @@ function calcularTempoRelacionamento() {
     const header = document.querySelector("header");
     const main = document.querySelector("main");
     const audio = document.getElementById("bg-music");
-    const mainVideo = document.getElementById("main-video");
 
     let current = 0;
     let isMusicSectionActive = false;
@@ -801,19 +860,16 @@ function calcularTempoRelacionamento() {
 
     function showNextText() {
       if (current >= texts.length) {
-        // Todos os textos foram mostrados, agora mostra a Netflix com efeito
         introEl.style.display = "none";
         musicSection.classList.remove("active");
         
-        // Mostra os elementos da Netflix
         header.style.display = "flex";
         main.style.display = "block";
         
-        // Adiciona a classe show para fazer aparecer com fade-in
         setTimeout(() => {
           header.classList.add("show");
           main.classList.add("show");
-          mainVideo.play().catch(e => console.log("Autoplay não permitido:", e));
+          setupVideo();
         }, 100);
         return;
       }
@@ -821,7 +877,6 @@ function calcularTempoRelacionamento() {
       textEl.textContent = texts[current];
       textEl.classList.add("visible");
 
-      // Verifica se é o terceiro texto (índice 3 )
       if (current === 2) {
         setTimeout(() => {
           textEl.classList.remove("visible");
@@ -839,67 +894,9 @@ function calcularTempoRelacionamento() {
         setTimeout(showNextText, 1000);
       }, 3500);
     }
-    function handleTouchStart(e) {
-      touchStartY = e.touches[0].clientY;
-    }
-
-    function handleTouchMove(e) {
-      if (!isMusicSectionActive) return;
-      
-      const touchY = e.touches[0].clientY;
-      const diff = touchStartY - touchY;
-      
-      if (diff > 50) { // Scroll para cima
-        musicSection.classList.add('fade-out');
-        setTimeout(() => {
-          musicSection.classList.remove("active", "fade-out");
-          isMusicSectionActive = false;
-          introEl.style.display = "flex";
-          current = 4; // Continua do próximo texto
-          showNextText();
-        }, 1000);
-      }
-    }
-
-    function handleWheel(e) {
-      if (!isMusicSectionActive) return;
-      
-      if (e.deltaY > 0) { // Scroll para baixo (não faz nada)
-        return;
-      } else if (e.deltaY < 0) { // Scroll para cima
-        musicSection.classList.add('fade-out');
-        setTimeout(() => {
-          musicSection.classList.remove("active", "fade-out");
-          isMusicSectionActive = false;
-          introEl.style.display = "flex";
-          current = 4; // Continua do próximo texto
-          showNextText();
-        }, 1000);
-      }
-    }
-
-    // Configura o vídeo para tentar reproduzir automaticamente
-    function setupVideo() {
-      mainVideo.muted = true; // Vídeos muted podem autoplay
-      const promise = mainVideo.play();
-      
-      if (promise !== undefined) {
-        promise.catch(error => {
-          // Autoplay não foi permitido
-          console.log("Autoplay não permitido, mostrando botão de play");
-          // Poderia adicionar um botão de play aqui se necessário
-        });
-      }
-    }
-
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: true });
-    document.addEventListener('wheel', handleWheel, { passive: false });
-    document.addEventListener('DOMContentLoaded', setupVideo);
 
     function gerarEstrelas(container) {
       const numStars = 80;
-      // Limpa estrelas existentes primeiro
       const existingStars = container.querySelectorAll('.star');
       existingStars.forEach(star => star.remove());
       
@@ -916,7 +913,61 @@ function calcularTempoRelacionamento() {
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // Event listeners para scroll no mobile
+    function handleTouchStart(e) {
+      touchStartY = e.touches[0].clientY;
+    }
+
+    function handleTouchMove(e) {
+      if (!isMusicSectionActive) return;
+      
+      const touchY = e.touches[0].clientY;
+      const diff = touchStartY - touchY;
+      
+      if (diff > 50) {
+        musicSection.classList.add('fade-out');
+        setTimeout(() => {
+          musicSection.classList.remove("active", "fade-out");
+          isMusicSectionActive = false;
+          introEl.style.display = "flex";
+          current = 4;
+          showNextText();
+        }, 1000);
+      }
+    }
+
+    function handleWheel(e) {
+      if (!isMusicSectionActive) return;
+      
+      if (e.deltaY < 0) {
+        musicSection.classList.add('fade-out');
+        setTimeout(() => {
+          musicSection.classList.remove("active", "fade-out");
+          isMusicSectionActive = false;
+          introEl.style.display = "flex";
+          current = 4;
+          showNextText();
+        }, 1000);
+      }
+    }
+
+    // Inicializa tudo quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', function() {
+      setupVoiceRecognition();
+      setupVideoModal();
+      
+      // Tenta autoplay após interação do usuário
+      document.body.addEventListener('click', function initialPlay() {
+        setupVideo();
+        document.body.removeEventListener('click', initialPlay);
+      }, { once: true });
+
+      // Event listeners para mobile
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: true });
+      document.addEventListener('wheel', handleWheel, { passive: false });
+      
+      // Gera estrelas na tela inicial
       gerarEstrelas(document.getElementById("start-screen"));
     });
   </script>
