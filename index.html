@@ -217,12 +217,19 @@
       margin: 10px 0;
       font-style: italic;
     }
-
     .buttons {
       display: flex;
-      gap: 10px;
-      margin-top: 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem; /* espaço entre linha dos botões e comando de voz */
+      margin-top: 2rem;
     }
+
+    .top-buttons {
+  display: flex;
+  gap: 1rem; /* espaço entre os dois botões */
+}
+
 
     .btn-play, .btn-list {
       background: white;
@@ -495,9 +502,19 @@
         align-items: flex-start;
       }
       
-      .btn-play, .btn-list, .btn-voice {
-        width: 100%;
-        margin-bottom: 10px;
+      .btn-play,
+      .btn-list,
+      .btn-voice {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #e50914;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 150px; /* tamanho fixo pra todos ficarem iguais */
+        text-align: center;
       }
       
       /* Ajuste para o vídeo */
@@ -573,8 +590,10 @@
         <p>Juntos desde 2025 💕</p>
         <p class="tagline">"O amor verdadeiro não tem final feliz, porque simplesmente não tem final."</p>
         <div class="buttons">
-          <button class="btn-play">▶ Assistir</button>
-          <button class="btn-list">+ Minha Lista</button>
+          <div class="top-buttons">
+            <button class="btn-play">▶ Assistir</button>
+            <button class="btn-list">+ Minha Lista</button>
+          </div>
           <button id="voice-btn" class="btn-voice" title="Diga 'Eu te amo'">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
