@@ -1478,14 +1478,6 @@
       musicSection.classList.add("active");
       gerarEstrelas(musicSection);
       isMusicSectionActive = true;
-      
-      // Configura um timeout para continuar automaticamente após 10 segundos
-      // se o usuário não interagir (rolar para baixo)
-      setTimeout(() => {
-        if (isMusicSectionActive) {
-          continueAfterMusic();
-        }
-      }, 10000);
     }, 3500);
     return;
   }
