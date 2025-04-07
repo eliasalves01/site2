@@ -320,7 +320,7 @@
       padding: 0 20px;
     }
 
-    .music-player {
+    /* .music-player {
       background-color: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 12px;
@@ -388,6 +388,212 @@
       0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
       40% {transform: translateY(-20px) translateX(-50%);}
       60% {transform: translateY(-10px) translateX(-50%);}
+    } */
+
+    .music-section {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to bottom, #1c041c, black);
+      padding: 20px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      visibility: hidden;
+    }
+
+    .music-section.active {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+    }
+
+    .music-section h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #b3b3b3;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff66b2;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .music-carousel {
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      margin: 0 auto;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .music-cards {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+      width: 100%;
+    }
+
+    .music-card {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .music-player {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .album-cover {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .rotating {
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .song-info {
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .song-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .artist {
+      font-size: 0.9rem;
+      color: #b3b3b3;
+    }
+
+    .play-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 1.8rem;
+      transition: transform 0.2s;
+      min-width: 30px;
+    }
+
+    .play-button:hover {
+      transform: scale(1.1);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #e75480, #8e44ad);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .time-info {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 5px;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background-color: #e75480;
+      transform: scale(1.2);
+    }
+
+    .music-section.active .swipe-instruction {
+      opacity: 1;
+    }
+
+    .swipe-icon {
+      animation: swipe 2s infinite;
+    }
+
+    @keyframes swipe {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+    }
+
+    .unlock-message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      text-align: center;
+      width: 80%;
+      max-width: 300px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .show-unlock {
+      opacity: 1;
     }
 
     .hidden {
@@ -523,311 +729,85 @@
     }
   }
 }
-.music-section {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1500;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1.5s ease;
-      background: linear-gradient(135deg, rgba(92, 37, 141, 0.2) 0%, rgba(231, 84, 128, 0.2) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 20px;
-      box-sizing: border-box;
-    }
 
-    .music-cards-container {
-      perspective: 1000px;
+    /* Estilos para os players de música */
+    .music-player {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
       width: 100%;
-      max-width: 500px;
-      height: 60vh;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px 0;
-    }
-
-    .music-card {
-      position: absolute;
-      width: 90%;
       max-width: 400px;
-      height: 80%;
-      transform-style: preserve-3d;
-      transition: all 0.5s ease;
-      cursor: pointer;
-    }
-
-    .music-card:nth-child(1) {
-      transform: translateZ(0) scale(1);
-      z-index: 3;
-    }
-
-    .music-card:nth-child(2) {
-      transform: translateZ(-50px) scale(0.95);
-      z-index: 2;
-      filter: brightness(0.9);
-    }
-
-    .music-card:nth-child(3) {
-      transform: translateZ(-100px) scale(0.9);
-      z-index: 1;
-      filter: brightness(0.8);
-    }
-
-    .music-card-content {
-      width: 100%;
-      height: 100%;
-      background: rgb(0 0 0);
-      border-radius: 25px;
-      padding: 30px;
-      box-sizing: border-box;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2),
-                  0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-                  0 0 30px rgba(231, 84, 128, 0.15) inset;
+      margin: 10px auto;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+      gap: 15px;
+      transition: transform 0.3s;
     }
-
-    .music-card.active .music-card-content {
-      box-shadow: 0 15px 40px rgba(231, 84, 128, 0.3),
-                  0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-                  0 0 40px rgba(231, 84, 128, 0.2) inset;
+    
+    .music-player:hover {
+      transform: scale(1.02);
     }
-
-    .album-art {
-      width: 200px;
-      height: 200px;
+    
+    .album-cover {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 25px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      border: 3px solid rgba(255, 255, 255, 0.25);
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease-in-out;
     }
-
-    .album-art.playing {
-      animation: spin 10s linear infinite;
-      box-shadow: 0 15px 35px rgba(231, 84, 128, 0.4);
+    
+    .rotating {
+      animation: spin 3s linear infinite;
+      animation-play-state: running;
     }
-
+    
+    .rotating-pause {
+      animation: spin 3s linear infinite;
+      animation-play-state: paused;
+    }
+    
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
+    
     .song-info {
-      text-align: center;
-      margin-bottom: 25px;
-      width: 100%;
+      flex-grow: 1;
+      text-align: left;
     }
-
+    
     .song-title {
-      font-size: 1.8rem;
+      font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 5px;
-      color: white;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-
+    
     .artist {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-
-    .song-message {
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.9);
-      margin: 20px 0;
-      line-height: 1.6;
-      font-size: 1.1rem;
-      text-align: center;
-      font-weight: 300;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    .progress-container {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 3px;
-      margin: 20px 0 10px;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(to right, #e75480, #8e44ad);
-      border-radius: 3px;
-      width: 0%;
-      transition: width 0.1s linear;
-      position: relative;
-    }
-
-    .progress-bar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 10px;
-      background: white;
-      border-radius: 3px;
-      opacity: 0.8;
-    }
-
-    .time-info {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
-      margin-bottom: 20px;
+      color: #b3b3b3;
     }
-
-    .player-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .play-btn {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e75480, #8e44ad);
+    
+    .play-button {
+      background: none;
       border: none;
+      cursor: pointer;
       color: white;
       font-size: 1.8rem;
-      cursor: pointer;
+      transition: transform 0.2s;
+      min-width: 30px;
+    }
+    
+    .play-button:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Ajuste para a seção de música */
+    .music-section {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      box-shadow: 0 5px 20px rgba(231, 84, 128, 0.5);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .play-btn::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.3),
-        rgba(255, 255, 255, 0)
-      );
-      transform: rotate(30deg);
-      transition: all 0.3s ease;
-    }
-
-    .play-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(231, 84, 128, 0.7);
-    }
-
-    .play-btn:hover::before {
-      transform: rotate(30deg) translate(10%, 10%);
-    }
-
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .nav-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .nav-dot.active {
-      background: white;
-      transform: scale(1.2);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .music-cards-container {
-        height: 55vh;
-      }
-      
-      .music-card-content {
-        padding: 25px;
-      }
-      
-      .album-art {
-        width: 160px;
-        height: 160px;
-        margin-bottom: 20px;
-      }
-      
-      .song-title {
-        font-size: 1.5rem;
-      }
-      
-      .artist {
-        font-size: 1rem;
-      }
-      
-      .song-message {
-        font-size: 1rem;
-        margin: 15px 0;
-      }
-      
-      .play-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .music-card-content {
-        padding: 20px;
-      }
-      
-      .album-art {
-        width: 140px;
-        height: 140px;
-      }
-      
-      .song-title {
-        font-size: 1.3rem;
-      }
-      
-      .song-message {
-        font-size: 0.95rem;
-      }
+      gap: 15px;
+      padding: 20px 0;
     }
     </style>
 </head>
@@ -841,94 +821,87 @@
   </div>
 
   <div id="music-section" class="music-section">
-    <h2>Nossa Trilha Sonora</h2>
-    <h1 class="highlight">Músicas que marcaram nossa história</h1>
+    <h2>Que tal dar play na música</h2>
+    <h1 class="highlight">que me lembra dos nossos momentos juntos?</h1>
     
-    <div class="music-cards-container">
-      <!-- Card 1 -->
-      <div class="music-card active" data-index="0" data-audio="audio1">
-        <div class="music-card-content">
-          <img src="CapadeMusica1.jpg" alt="Capa do Álbum" class="album-art">
-          <div class="song-info">
-            <h3 class="song-title">I Wanna Be Yours</h3>
-            <p class="artist">Arctic Monkeys</p>
+    <div class="music-carousel">
+      <div class="music-cards" id="music-cards">
+        <!-- CARD 1 -->
+        <div class="music-card">
+          <div class="music-player">
+            <img src="CapadeMusica2.jpeg" alt="Capa do Álbum" class="album-cover">
+            <div class="song-info">
+              <p class="song-title">I Wanna Be Yours</p>
+              <p class="artist">Arctic Monkeys</p>
+            </div>
+            <button class="play-button" data-audio="audio1">▶</button>
           </div>
-          
-          <p class="song-message">"Essa música me lembra da primeira vez que te vi. Sabia que queria ser seu desde aquele momento."</p>
-          
           <div class="progress-container">
             <div class="progress-bar" id="progress1"></div>
           </div>
           <div class="time-info">
             <span class="current-time">0:00</span>
-            <span class="duration">3:03</span>
+            <span class="duration">3:04</span>
           </div>
-          
-          <div class="player-controls">
-            <button class="play-btn" data-audio="audio1">▶</button>
-          </div>
+          <audio id="audio1" src="musica2.mp3"></audio>
         </div>
-      </div>
-      
-      <!-- Card 2 -->
-      <div class="music-card" data-index="1" data-audio="audio2">
-        <div class="music-card-content">
-          <img src="CapadeMusica3.jpeg" alt="Capa do Álbum" class="album-art">
-          <div class="song-info">
-            <h3 class="song-title">Somebody Else</h3>
-            <p class="artist">The 1975</p>
+        
+        <!-- CARD 2 -->
+        <div class="music-card">
+          <div class="music-player">
+            <img src="CapadeMusica1.jpg" alt="Capa do Álbum" class="album-cover">
+            <div class="song-info">
+              <p class="song-title">Monde Nouveau</p>
+              <p class="artist">Oscar Anton</p>
+            </div>
+            <button class="play-button" data-audio="audio2">▶</button>
           </div>
-          
-          <p class="song-message">"Quando ouço essa música, lembro das noites em que ficávamos conversando até tarde, descobrindo um ao outro."</p>
-          
           <div class="progress-container">
             <div class="progress-bar" id="progress2"></div>
           </div>
           <div class="time-info">
             <span class="current-time">0:00</span>
-            <span class="duration">5:47</span>
+            <span class="duration">2:38</span>
           </div>
-          
-          <div class="player-controls">
-            <button class="play-btn" data-audio="audio2">▶</button>
-          </div>
+          <audio id="audio2" src="musica.mp3"></audio>
         </div>
-      </div>
-      
-      <!-- Card 3 -->
-      <div class="music-card" data-index="2" data-audio="audio3">
-        <div class="music-card-content">
-          <img src="CapadeMusica2.jpeg" alt="Capa do Álbum" class="album-art">
-          <div class="song-info">
-            <h3 class="song-title">Compass</h3>
-            <p class="artist">Jeff Buckley</p>
+        
+        <!-- CARD 3 -->
+        <div class="music-card">
+          <div class="music-player">
+            <img src="CapadeMusica3.jpeg" alt="Capa do Álbum" class="album-cover">
+            <div class="song-info">
+              <p class="song-title">Compass</p>
+              <p class="artist">the neighbourhood</p>
+            </div>
+            <button class="play-button" data-audio="audio3">▶</button>
           </div>
-          
-          <p class="song-message">"Nosso amor é como essa música - suave, profundo e eterno. Você é minha bússola, meu amor."</p>
-          
           <div class="progress-container">
             <div class="progress-bar" id="progress3"></div>
           </div>
           <div class="time-info">
             <span class="current-time">0:00</span>
-            <span class="duration">4:20</span>
+            <span class="duration">2:51</span>
           </div>
-          
-          <div class="player-controls">
-            <button class="play-btn" data-audio="audio3">▶</button>
-          </div>
+          <audio id="audio3" src="musica3.mp3"></audio>
         </div>
+      </div>
+      
+      <div class="carousel-indicators">
+        <div class="indicator active" data-index="0"></div>
+        <div class="indicator" data-index="1"></div>
+        <div class="indicator" data-index="2"></div>
       </div>
     </div>
     
-
+    <div class="swipe-instruction">
+      <span>Arraste para o lado</span>
+      <span class="swipe-icon">→</span>
+    </div>
     
-    <div class="scroll-hint">Arraste para cima para continuar</div>
-    
-    <!-- Elementos de áudio -->
-    <audio id="audio1" src="musica2.mp3"></audio>
-    <audio id="audio2" src="musica.mp3"></audio>
-    <audio id="audio3" src="musica3.mp3"></audio>
+    <div class="unlock-message" id="unlock-message">
+      Você viu todas as músicas! Agora pode descer para continuar.
+    </div>
   </div>
 
   <audio id="bg-music" loop>
@@ -998,219 +971,67 @@
   </main>
 
   <script>
-   
-   document.addEventListener('DOMContentLoaded', function() {
-      // Elementos do DOM
-      const musicSection = document.getElementById('music-section');
-      const cards = document.querySelectorAll('.music-card');
-      const dots = document.querySelectorAll('.nav-dot');
-      const bgMusic = document.getElementById('bg-music');
-      let currentIndex = 0;
-      let touchStartX = 0;
-      let touchEndX = 0;
+    // Variáveis globais
+    let bgMusicCurrentTime = 0;
+    let currentCard = 0;
+    let touchStartX = 0;
+    let touchEndY = 0;
+    let current = 0;
+    let isMusicSectionActive = false;
+    let touchStartY = 0;
+    const totalCards = document.querySelectorAll('.music-card').length;
+    const musicCards = document.getElementById('music-cards');
+    const indicators = document.querySelectorAll('.indicator');
+    const unlockMessage = document.getElementById('unlock-message');
+    const swipeInstruction = document.querySelector('.swipe-instruction');
+    
+    // Textos para a introdução
+    const texts = [
+    "Quando nossos olhares se encontraram...",
+  "Eu soube que seria especial",
+  "Cada dia desde então tem sido mágico",
+  calcularTempoRelacionamento(), // Texto antes da música
+  // Seção de música aparece aqui
+  "Essas músicas marcam nossa história",
+  "Cada acorde é um momento nosso",
+  "Não vejo a hora de criar novas memórias",
+  "De adicionar novas canções à nossa playlist",
+  "Porque o melhor ainda está por vir",
+  "te amo"
+    ];
+    
+    // Elementos DOM
+    const textEl = document.getElementById("text");
+    const introEl = document.getElementById("intro");
+    const startScreen = document.getElementById("start-screen");
+    const musicSection = document.getElementById("music-section");
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    const audio = document.getElementById("bg-music");
+    
+    // Inicialização quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', function() {
+      setupVoiceRecognition();
+      setupVideoModal();
+      setupMusicPlayers();
+      setupCarousel();
       
-      // Objeto para controlar os áudios
-      const audioElements = {
-        audio1: document.getElementById('audio1'),
-        audio2: document.getElementById('audio2'),
-        audio3: document.getElementById('audio3')
-      };
+      // Tenta autoplay após interação do usuário
+      document.body.addEventListener('click', function initialPlay() {
+        setupVideo();
+        document.body.removeEventListener('click', initialPlay);
+      }, { once: true });
+    
+      // Event listeners para mobile
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: true });
+      document.addEventListener('wheel', handleWheel, { passive: false });
       
-      // Inicializa os tempos de duração
-      Object.values(audioElements).forEach(audio => {
-        audio.addEventListener('loadedmetadata', function() {
-          const card = document.querySelector(`.music-card[data-audio="${audio.id}"]`);
-          if (card) {
-            const durationElement = card.querySelector('.duration');
-            durationElement.textContent = formatTime(audio.duration);
-          }
-        });
-      });
-      
-      // Função para formatar o tempo (mm:ss)
-      function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-      }
-      
-      // Atualiza as barras de progresso
-      function updateProgressBars() {
-        Object.entries(audioElements).forEach(([id, audio]) => {
-          const card = document.querySelector(`.music-card[data-audio="${id}"]`);
-          if (!card) return;
-          
-          const progressBar = card.querySelector('.progress-bar');
-          const currentTimeElement = card.querySelector('.current-time');
-          
-          if (!audio.paused) {
-            progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
-            currentTimeElement.textContent = formatTime(audio.currentTime);
-          }
-        });
-        
-        requestAnimationFrame(updateProgressBars);
-      }
-      
-      // Inicia a atualização das barras de progresso
-      updateProgressBars();
-      
-      // Configura os botões de play
-      document.querySelectorAll('.play-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.stopPropagation(); // Impede a propagação para o card
-          
-          const audioId = this.getAttribute('data-audio');
-          const audio = audioElements[audioId];
-          const card = this.closest('.music-card');
-          const albumArt = card.querySelector('.album-art');
-          
-          // Pausa todos os outros áudios
-          Object.entries(audioElements).forEach(([id, a]) => {
-            if (id !== audioId) {
-              a.pause();
-              const otherCard = document.querySelector(`.music-card[data-audio="${id}"]`);
-              if (otherCard) {
-                otherCard.querySelector('.play-btn').textContent = '▶';
-                otherCard.querySelector('.album-art').classList.remove('playing');
-              }
-            }
-          });
-          
-          // Pausa a música de fundo se estiver tocando
-          const bgMusicWasPlaying = !bgMusic.paused;
-          if (bgMusicWasPlaying) {
-            bgMusic.pause();
-          }
-          
-          // Toca ou pausa o áudio atual
-          if (audio.paused) {
-            audio.play()
-              .then(() => {
-                this.textContent = '⏸';
-                albumArt.classList.add('playing');
-                
-                // Quando o áudio terminar
-                audio.onended = () => {
-                  this.textContent = '▶';
-                  albumArt.classList.remove('playing');
-                  if (bgMusicWasPlaying) {
-                    bgMusic.play();
-                  }
-                };
-              })
-              .catch(error => {
-                console.error("Erro ao reproduzir áudio:", error);
-              });
-          } else {
-            audio.pause();
-            this.textContent = '▶';
-            albumArt.classList.remove('playing');
-            
-            // Retoma a música de fundo se estava tocando antes
-            if (bgMusicWasPlaying) {
-              bgMusic.play();
-            }
-          }
-        });
-      });
-      
-      // Configura a barra de progresso clicável
-      document.querySelectorAll('.progress-container').forEach(container => {
-        container.addEventListener('click', function(e) {
-          const card = this.closest('.music-card');
-          const audioId = card.getAttribute('data-audio');
-          const audio = audioElements[audioId];
-          
-          if (!audio) return;
-          
-          const clickPosition = e.offsetX;
-          const containerWidth = this.offsetWidth;
-          const seekTime = (clickPosition / containerWidth) * audio.duration;
-          
-          audio.currentTime = seekTime;
-          card.querySelector('.progress-bar').style.width = `${(seekTime / audio.duration) * 100}%`;
-          card.querySelector('.current-time').textContent = formatTime(seekTime);
-        });
-      });
-      
-      // Navegação por dots
-      dots.forEach(dot => {
-        dot.addEventListener('click', function() {
-          const index = parseInt(this.getAttribute('data-index'));
-          goToCard(index);
-        });
-      });
-      
-      // Função para navegar para um card específico
-      function goToCard(index) {
-        // Remove a classe active de todos os cards e dots
-        cards.forEach(card => card.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Adiciona a classe active ao card e dot selecionado
-        cards[index].classList.add('active');
-        dots[index].classList.add('active');
-        
-        // Reorganiza os cards no eixo Z
-        cards.forEach((card, i) => {
-          if (i === index) {
-            card.style.transform = 'translateZ(0) scale(1)';
-            card.style.filter = 'brightness(1)';
-            card.style.zIndex = '3';
-          } else if (i === (index + 1) % cards.length) {
-            card.style.transform = 'translateZ(-50px) scale(0.95)';
-            card.style.filter = 'brightness(0.9)';
-            card.style.zIndex = '2';
-          } else {
-            card.style.transform = 'translateZ(-100px) scale(0.9)';
-            card.style.filter = 'brightness(0.8)';
-            card.style.zIndex = '1';
-          }
-        });
-        
-        currentIndex = index;
-      }
-      
-      // Eventos de touch para navegação por swipe
-      musicSection.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-      
-      musicSection.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, { passive: true });
-      
-      // Eventos de mouse para navegação por arraste
-      musicSection.addEventListener('mousedown', function(e) {
-        touchStartX = e.screenX;
-        document.addEventListener('mouseup', handleMouseUp);
-      });
-      
-      function handleMouseUp(e) {
-        touchEndX = e.screenX;
-        handleSwipe();
-        document.removeEventListener('mouseup', handleMouseUp);
-      }
-      
-      // Lógica para tratar o swipe/arraste
-      function handleSwipe() {
-        const threshold = 50; // Mínimo de pixels para considerar um swipe
-        
-        if (touchEndX < touchStartX - threshold) {
-          // Swipe para a esquerda - próximo card
-          goToCard((currentIndex + 1) % cards.length);
-        } else if (touchEndX > touchStartX + threshold) {
-          // Swipe para a direita - card anterior
-          goToCard((currentIndex - 1 + cards.length) % cards.length);
-        }
-      }
-      
-      // Inicializa o carrossel
-      goToCard(0);
+      // Gera estrelas na tela inicial
+      gerarEstrelas(document.getElementById("start-screen"));
     });
-// Função para calcular tempo de relacionamento
+    
+    // Função para calcular tempo de relacionamento
     function calcularTempoRelacionamento() {
       const dataInicio = new Date(2025, 1, 21); // 21/02/2025
       const dataAtual = new Date();
@@ -1220,7 +1041,7 @@
         const diasFaltantes = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         return `Faltam ${diasFaltantes} dias para começarmos nossa jornada juntos 💕`;
       }
-
+    
       const diffMs = dataAtual - dataInicio;
       const horasTotais = Math.floor(diffMs / (1000 * 60 * 60));
       const diasTotais = Math.floor(horasTotais / 24);
@@ -1228,47 +1049,236 @@
       const meses = Math.floor(diasTotais / 30);
       const semanasNoMes = semanas % 4;
       const diasRestantes = diasTotais % 7;
-
+    
       if (diasRestantes === 0) {
         return `Estamos juntos a:\n           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'}.\nSão ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
       }
-
+    
       return `Estamos juntos a:\n           ${meses} ${meses === 1 ? 'mês' : 'meses'}\n           ${semanasNoMes} ${semanasNoMes === 1 ? 'semana' : 'semanas'} e\n           ${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}.\nSão ${horasTotais.toLocaleString()} horas compartilhadas contigo`;
     }
-
+    
+    // Configuração dos players de música
+    function setupMusicPlayers() {
+      const audioBg = document.getElementById('bg-music');
+      let bgMusicWasPlaying = false;
+      
+      document.querySelectorAll('.music-player').forEach((player, index) => {
+        const button = player.querySelector('.play-button');
+        const album = player.querySelector('.album-cover');
+        const audioId = button.getAttribute('data-audio');
+        const audio = document.getElementById(audioId);
+        const progressBar = document.getElementById(`progress${index + 1}`);
+        const currentTimeDisplay = player.parentElement.querySelector('.current-time');
+        const durationDisplay = player.parentElement.querySelector('.duration');
+        
+        audio.addEventListener('loadedmetadata', () => {
+          const duration = audio.duration;
+          const minutes = Math.floor(duration / 60);
+          const seconds = Math.floor(duration % 60);
+          durationDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        });
+        
+        audio.addEventListener('timeupdate', () => {
+          const currentTime = audio.currentTime;
+          const duration = audio.duration;
+          const progressPercent = (currentTime / duration) * 100;
+          progressBar.style.width = `${progressPercent}%`;
+          
+          const minutes = Math.floor(currentTime / 60);
+          const seconds = Math.floor(currentTime % 60);
+          currentTimeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        });
+        
+        audio.addEventListener('ended', () => {
+          button.textContent = "▶";
+          album.classList.remove('rotating');
+          progressBar.style.width = '0%';
+          currentTimeDisplay.textContent = '0:00';
+          
+          if(bgMusicWasPlaying) {
+            audioBg.play();
+          }
+        });
+        
+        button.addEventListener('click', () => {
+          bgMusicWasPlaying = !audioBg.paused;
+          
+          if(bgMusicWasPlaying) {
+            audioBg.pause();
+          }
+    
+          document.querySelectorAll('audio:not(#bg-music)').forEach(a => {
+            if (a !== audio) {
+              a.pause();
+              a.currentTime = 0;
+              const otherButton = a.parentElement.querySelector('.play-button');
+              const otherAlbum = a.parentElement.querySelector('.album-cover');
+              const otherProgress = a.parentElement.querySelector('.progress-bar');
+              const otherCurrentTime = a.parentElement.querySelector('.current-time');
+              
+              if (otherButton) otherButton.textContent = "▶";
+              if (otherAlbum) otherAlbum.classList.remove('rotating');
+              if (otherProgress) otherProgress.style.width = '0%';
+              if (otherCurrentTime) otherCurrentTime.textContent = '0:00';
+            }
+          });
+    
+          if (audio.paused) {
+            audio.play()
+              .then(() => {
+                button.textContent = "⏸";
+                album.classList.add('rotating');
+              })
+              .catch(error => {
+                console.error("Erro ao reproduzir áudio:", error);
+              });
+          } else {
+            audio.pause();
+            button.textContent = "▶";
+            album.classList.remove('rotating');
+            
+            if(bgMusicWasPlaying) {
+              audioBg.play();
+            }
+          }
+        });
+      });
+    }
+    
+    // Configuração do carrossel de músicas
+    function setupCarousel() {
+      musicCards.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, {passive: true});
+      
+      musicCards.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        handleSwipe(touchStartX, touchEndX);
+      }, {passive: true});
+      
+      let mouseDownX = 0;
+      let mouseUpX = 0;
+      
+      musicCards.addEventListener('mousedown', (e) => {
+        mouseDownX = e.clientX;
+      });
+      
+      musicCards.addEventListener('mouseup', (e) => {
+        mouseUpX = e.clientX;
+        if (Math.abs(mouseUpX - mouseDownX) > 50) {
+          if (mouseUpX < mouseDownX) {
+            nextCard();
+          } else {
+            prevCard();
+          }
+        }
+      });
+      
+      indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+          currentCard = parseInt(indicator.getAttribute('data-index'));
+          updateCarousel();
+          
+          if (currentCard !== totalCards - 1) {
+            unlockMessage.classList.remove('show-unlock');
+            swipeInstruction.style.display = 'flex';
+          }
+        });
+      });
+      
+      document.getElementById('music-section').addEventListener('transitionend', function() {
+        if (!this.classList.contains('active')) {
+          resetCarousel();
+        }
+      });
+    }
+    
+    function handleSwipe(startX, endX) {
+      if (endX < startX - 50) {
+        nextCard();
+      } else if (endX > startX + 50) {
+        prevCard();
+      }
+    }
+    
+    function nextCard() {
+      if (currentCard < totalCards - 1) {
+        currentCard++;
+        updateCarousel();
+      } else {
+        showUnlockMessage();
+      }
+    }
+    
+    function prevCard() {
+      if (currentCard > 0) {
+        currentCard--;
+        updateCarousel();
+        unlockMessage.classList.remove('show-unlock');
+        swipeInstruction.style.display = 'flex';
+      }
+    }
+    
+    function updateCarousel() {
+      musicCards.style.transform = `translateX(-${currentCard * 100}%)`;
+      
+      indicators.forEach((ind, index) => {
+        ind.classList.toggle('active', index === currentCard);
+      });
+    
+      if (currentCard === totalCards - 1) {
+        showUnlockMessage();
+      }
+    }
+    
+    function showUnlockMessage() {
+      unlockMessage.classList.add('show-unlock');
+      swipeInstruction.style.display = 'none';
+      
+      setTimeout(() => {
+        unlockMessage.style.opacity = '1';
+      }, 3000);
+    }
+    
+    function resetCarousel() {
+      currentCard = 0;
+      musicCards.style.transform = 'translateX(0)';
+      indicators.forEach((ind, index) => {
+        ind.classList.toggle('active', index === 0);
+      });
+      unlockMessage.classList.remove('show-unlock');
+      unlockMessage.style.opacity = '0';
+      swipeInstruction.style.display = 'flex';
+    }
+    
     // Configuração do reconhecimento de voz
     function setupVoiceRecognition() {
       const VoiceBtn = document.getElementById('voice-btn');
       const VoiceStatus = document.getElementById('voice-status');
       
-      // Remove container existente se houver
       const existingContainer = document.getElementById('hearts-container');
       if (existingContainer) {
         existingContainer.remove();
       }
-
-      // Cria novo container
+    
       const HeartsContainer = document.createElement('div');
       HeartsContainer.id = 'hearts-container';
       document.body.appendChild(HeartsContainer);
-
-      // Verifica suporte
+    
       if (!('webkitSpeechRecognition' in window)) {
         VoiceBtn.disabled = true;
         VoiceStatus.textContent = 'Recurso não suportado no seu navegador';
         return;
       }
-
+    
       const Recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
       Recognition.lang = 'pt-BR';
       Recognition.interimResults = false;
       Recognition.continuous = false;
       Recognition.maxAlternatives = 1;
-
-      // Configurações específicas para mobile
+    
       Recognition.onstart = function() {
         VoiceStatus.textContent = 'Fale agora...';
-        // Timeout maior para mobile
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
           this.timeout = setTimeout(() => {
             if (VoiceBtn.classList.contains('listening')) {
@@ -1276,15 +1286,14 @@
               VoiceStatus.textContent = 'Tempo esgotado, tente novamente!';
               VoiceBtn.classList.remove('listening');
             }
-          }, 10000); // 10 segundos para mobile
+          }, 10000);
         }
       };
-
+    
       VoiceBtn.addEventListener('click', function() {
         VoiceStatus.textContent = 'Preparando...';
         VoiceBtn.classList.add('listening');
         
-        // Solicita permissão de microfone primeiro
         navigator.mediaDevices.getUserMedia({ audio: true })
           .then(() => {
             VoiceStatus.textContent = 'Diga "Eu te amo" agora...';
@@ -1296,7 +1305,7 @@
             console.error('Erro de permissão:', err);
           });
       });
-
+    
       Recognition.onresult = function(event) {
         clearTimeout(this.timeout);
         const speechResult = event.results[0][0].transcript.trim().toLowerCase();
@@ -1310,7 +1319,7 @@
           VoiceStatus.textContent = `Você disse: "${speechResult}"`;
         }
       };
-
+    
       Recognition.onerror = function(event) {
         clearTimeout(this.timeout);
         VoiceBtn.classList.remove('listening');
@@ -1321,32 +1330,28 @@
           VoiceStatus.textContent = `Erro: ${event.error}`;
         }
       };
-
+    
       Recognition.onend = function() {
         VoiceBtn.classList.remove('listening');
       };
-
+    
       function createHearts() {
         HeartsContainer.innerHTML = '';
         
-        // Cria 50 corações
         for (let i = 0; i < 50; i++) {
           const heart = document.createElement('div');
           heart.className = 'heart';
           
-          // Tipos diferentes de corações
           const hearts = ['❤️', '💖', '💗', '💓', '💘'];
           heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
           
-          // Posição inicial aleatória no topo
           const startX = Math.random() * 100;
-          const endX = (Math.random() - 0.5) * 40; // Variação horizontal
+          const endX = (Math.random() - 0.5) * 40;
           
           heart.style.setProperty('--start-x', `${startX}vw`);
           heart.style.setProperty('--end-x', `${endX}px`);
           heart.style.left = `${startX}vw`;
           
-          // Tamanho e duração aleatórios
           const size = Math.random() * 20 + 15;
           heart.style.fontSize = `${size}px`;
           
@@ -1357,25 +1362,22 @@
           HeartsContainer.appendChild(heart);
         }
         
-        // Limpa os corações após a animação terminar
         setTimeout(() => {
           HeartsContainer.innerHTML = '';
         }, 6000);
       }
     }
-
+    
     // Configuração do vídeo
     function setupVideo() {
       const mainVideo = document.getElementById('main-video');
       mainVideo.muted = true;
-      mainVideo.playsInline = true; // Importante para iOS
+      mainVideo.playsInline = true;
       
-      // Tenta autoplay
       const playPromise = mainVideo.play();
       
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          // Fallback para mobile: mostra botão de play
           const playButton = document.createElement('button');
           playButton.innerHTML = '▶ Toque para iniciar o vídeo';
           playButton.style.position = 'absolute';
@@ -1398,7 +1400,7 @@
         });
       }
     }
-
+    
     // Configuração do modal de vídeo
     function setupVideoModal() {
       const btnPlay = document.querySelector('.btn-play');
@@ -1406,19 +1408,19 @@
       const modalVideo = document.getElementById('modal-video');
       const closeModal = document.getElementById('close-modal');
       const bgMusic = document.getElementById('bg-music');
-
+    
       btnPlay.addEventListener('click', () => {
         videoModal.classList.remove('hidden');
         modalVideo.play();
         bgMusic.pause();
       });
-
+    
       closeModal.addEventListener('click', () => {
         modalVideo.pause();
         videoModal.classList.add('hidden');
         bgMusic.play();
       });
-
+    
       videoModal.addEventListener('click', (e) => {
         if (e.target === videoModal) {
           modalVideo.pause();
@@ -1426,39 +1428,19 @@
           bgMusic.play();
         }
       });
-
+    
       modalVideo.addEventListener('play', () => {
         bgMusic.pause();
       });
-
+    
       modalVideo.addEventListener('pause', () => {
         if (!videoModal.classList.contains('hidden')) {
           bgMusic.play();
         }
       });
     }
-
-    // Inicialização da página
-    const texts = [
-      "Cada momento ao seu lado é uma memória eterna...",
-      "Seu sorriso ilumina meu universo escuro.",
-      "Que nossos caminhos sejam sempre entrelaçados.",
-      calcularTempoRelacionamento(),
-      "te amo",
-    ];
-
-    const textEl = document.getElementById("text");
-    const introEl = document.getElementById("intro");
-    const startScreen = document.getElementById("start-screen");
-    const musicSection = document.getElementById("music-section");
-    const header = document.querySelector("header");
-    const main = document.querySelector("main");
-    const audio = document.getElementById("bg-music");
-
-    let current = 0;
-    let isMusicSectionActive = false;
-    let touchStartY = 0;
-
+    
+    // Funções da introdução
     function iniciar() {
       startScreen.style.display = "none";
       introEl.style.display = "flex";
@@ -1468,44 +1450,94 @@
     }
 
     function showNextText() {
-      if (current >= texts.length) {
-        introEl.style.display = "none";
-        musicSection.classList.remove("active");
-        
-        header.style.display = "flex";
-        main.style.display = "block";
-        
-        setTimeout(() => {
-          header.classList.add("show");
-          main.classList.add("show");
-          setupVideo();
-        }, 100);
-        return;
-      }
+  // Verifica se já mostrou todos os textos
+  if (current >= texts.length) {
+    introEl.style.display = "none";
+    musicSection.classList.remove("active");
+    
+    header.style.display = "flex";
+    main.style.display = "block";
+    
+    setTimeout(() => {
+      header.classList.add("show");
+      main.classList.add("show");
+      setupVideo();
+    }, 100);
+    return;
+  }
 
-      textEl.textContent = texts[current];
-      textEl.classList.add("visible");
+  // Mostra o texto atual
+  textEl.textContent = texts[current];
+  textEl.classList.add("visible");
 
-      if (current === 0) {
-        setTimeout(() => {
-          textEl.classList.remove("visible");
-          introEl.style.display = "none";
-          musicSection.classList.add("active");
-          gerarEstrelas(musicSection);
-          isMusicSectionActive = true;
-        }, 3500);
-        return;
-      }
-
+  // Se for o texto 3 (índice 3), mostra a seção de música
+  if (current === 3) {
+    setTimeout(() => {
+      textEl.classList.remove("visible");
+      introEl.style.display = "none";
+      musicSection.classList.add("active");
+      gerarEstrelas(musicSection);
+      isMusicSectionActive = true;
+      
+      // Configura um timeout para continuar automaticamente após 10 segundos
+      // se o usuário não interagir (rolar para baixo)
       setTimeout(() => {
-        textEl.classList.remove("visible");
-        current++;
-        setTimeout(showNextText, 1000);
-      }, 3500);
-    }
+        if (isMusicSectionActive) {
+          continueAfterMusic();
+        }
+      }, 10000);
+    }, 3500);
+    return;
+  }
+
+  // Transição normal entre textos
+  setTimeout(() => {
+    textEl.classList.remove("visible");
+    current++;
+    setTimeout(showNextText, 1000);
+  }, 3500);
+}
+
+function continueAfterMusic() {
+  bgMusicCurrentTime = audio.currentTime;
+  
+  // Pausa todos os players de música
+  document.querySelectorAll('audio:not(#bg-music)').forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+    const button = audio.parentElement.querySelector('.play-button');
+    const album = audio.parentElement.querySelector('.album-cover');
+    const progress = audio.parentElement.querySelector('.progress-bar');
+    
+    if (button) button.textContent = "▶";
+    if (album) album.classList.remove('rotating');
+    if (progress) progress.style.width = '0%';
+  });
+  
+  musicSection.classList.add('fade-out');
+  setTimeout(() => {
+    musicSection.classList.remove("active", "fade-out");
+    isMusicSectionActive = false;
+    introEl.style.display = "flex";
+    current = 4; // Continua no 5º texto (índice 4)
+    audio.currentTime = bgMusicCurrentTime;
+    audio.play();
+    
+    // Mostra o texto imediatamente
+    textEl.textContent = texts[current];
+    textEl.classList.add("visible");
+    
+    // Configura o timeout para o próximo texto
+    setTimeout(() => {
+      textEl.classList.remove("visible");
+      current++;
+      setTimeout(showNextText, 1000);
+    }, 3500);
+  }, 1000);
+}
 
     function gerarEstrelas(container) {
-      const numStars = 80;
+      const numStars = 350;
       const existingStars = container.querySelectorAll('.star');
       existingStars.forEach(star => star.remove());
       
@@ -1521,34 +1553,48 @@
         container.appendChild(star);
       }
     }
-
-    // Event listeners para scroll no mobile
+    
+    // Funções de controle de scroll
     function handleTouchStart(e) {
       touchStartY = e.touches[0].clientY;
     }
-
+    
     function handleTouchMove(e) {
-      if (!isMusicSectionActive) return;
+  if (!isMusicSectionActive) return;
   
   const touchY = e.touches[0].clientY;
   const diff = touchStartY - touchY;
   
+  if (diff > 50) {
+    continueAfterMusic();
+  }
+}
+
+function handleWheel(e) {
+  if (!isMusicSectionActive) return;
   
-  if (diff > 50) { // Scroll para cima
+  if (e.deltaY < 0) {
+    continueAfterMusic();
+  }
+}
+
+function handleWheel(e) {
+  if (!isMusicSectionActive) return;
+  
+  if (e.deltaY < 0) {
+    bgMusicCurrentTime = audio.currentTime;
+    
     // Pausa todos os players de música
     document.querySelectorAll('audio:not(#bg-music)').forEach(audio => {
       audio.pause();
       audio.currentTime = 0;
-    });
-    
-    // Resetar controles visuais dos players
-    document.querySelectorAll('.album-cover').forEach(img => {
-      img.classList.remove('rotating');
-      img.classList.add('rotating-pause');
-    });
-    
-    document.querySelectorAll('.play-button').forEach(btn => {
-      btn.textContent = "▶";
+      const button = audio.parentElement.querySelector('.play-button');
+      const album = audio.parentElement.querySelector('.album-cover');
+      const progress = audio.parentElement.querySelector('.progress-bar');
+      
+      if (button) button.textContent = "▶";
+      if (album) album.classList.remove('rotating');
+      if (progress) progress.style.width = '0%';
     });
     
     musicSection.classList.add('fade-out');
@@ -1556,73 +1602,23 @@
       musicSection.classList.remove("active", "fade-out");
       isMusicSectionActive = false;
       introEl.style.display = "flex";
-      current = 4;
-      
-      // Retoma a música de fundo
-      audioBg.play();
-      
-      showNextText();
-    }, 1000);
-  }
-}
-function handleWheel(e) {
-  if (!isMusicSectionActive) return;
-  
-  if (e.deltaY < 0) { // Scroll para cima
-    // Salva o tempo atual antes de pausar
-    bgMusicCurrentTime = audio.currentTime;
-    document.querySelectorAll('audio:not(#bg-music)').forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-
-
-        // Resetar controles visuais dos players
-    document.querySelectorAll('.album-cover').forEach(img => {
-      img.classList.remove('rotating');
-      img.classList.add('rotating-pause');
-    });
-
-    document.querySelectorAll('.play-button').forEach(btn => {
-      btn.textContent = "▶";
-    });
-
-
-    musicSection.classList.add('fade-out');
-    setTimeout(() => {
-      musicSection.classList.remove("active", "fade-out");
-      isMusicSectionActive = false;
-      introEl.style.display = "flex";
-      current = 4; // Continua do próximo texto
-      
-      // Retoma a música de fundo de onde parou
+      current = 4; // Continua no 5º texto (índice 4)
       audio.currentTime = bgMusicCurrentTime;
       audio.play();
+      // Mostra o texto imediatamente
+      textEl.textContent = texts[current];
+      textEl.classList.add("visible");
       
-      showNextText();
+      // Configura o timeout para o próximo texto
+      setTimeout(() => {
+        textEl.classList.remove("visible");
+        current++;
+        setTimeout(showNextText, 1000);
+      }, 3500);
     }, 1000);
   }
 }
 
-    // Inicializa tudo quando o DOM estiver pronto
-    document.addEventListener('DOMContentLoaded', function() {
-      setupVoiceRecognition();
-      setupVideoModal();
-      
-      // Tenta autoplay após interação do usuário
-      document.body.addEventListener('click', function initialPlay() {
-        setupVideo();
-        document.body.removeEventListener('click', initialPlay);
-      }, { once: true });
-
-      // Event listeners para mobile
-      document.addEventListener('touchstart', handleTouchStart, { passive: true });
-      document.addEventListener('touchmove', handleTouchMove, { passive: true });
-      document.addEventListener('wheel', handleWheel, { passive: false });
-      
-      // Gera estrelas na tela inicial
-      gerarEstrelas(document.getElementById("start-screen"));
-    });
-  </script>
+    </script>
 </body>
 </html>
