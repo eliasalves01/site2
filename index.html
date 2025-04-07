@@ -1220,17 +1220,23 @@
     }
     
     function updateCarousel() {
-      musicCards.style.transform = `translateX(-${currentCard * 100}%)`;
-      
-      indicators.forEach((ind, index) => {
-        ind.classList.toggle('active', index === currentCard);
-      });
-    
-      if (currentCard === totalCards - 1) {
-        showUnlockMessage();
-      }
-    }
-    
+  musicCards.style.transform = `translateX(-${currentCard * 100}%)`;
+  
+  indicators.forEach((ind, index) => {
+    ind.classList.toggle('active', index === currentCard);
+  });
+
+  // Verifica se chegou na terceira música (índice 2, pois começa em 0)
+  if (currentCard === 2) {
+    terceiraMusicaVisualizada = true;
+    unlockMessage.classList.remove('show-unlock');
+    swipeInstruction.style.display = 'flex';
+  } else if (currentCard === totalCards - 1) {
+    showUnlockMessage();
+  }
+}
+
+
     function showUnlockMessage() {
       unlockMessage.classList.add('show-unlock');
       swipeInstruction.style.display = 'none';
@@ -1489,8 +1495,23 @@
     setTimeout(showNextText, 1000);
   }, 3500);
 }
-
 function continueAfterMusic() {
+  // Só permite continuar se a terceira música foi visualizada
+  if (!terceiraMusicaVisualizada) {
+    // Mostra mensagem instruindo o usuário
+    const instruction = document.createElement('div');
+    instruction.className = 'music-instruction';
+    instruction.textContent = 'Por favor, visualize a terceira música antes de continuar';
+    musicSection.appendChild(instruction);
+    
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+      instruction.remove();
+    }, 3000);
+    
+    return;
+  }
+
   bgMusicCurrentTime = audio.currentTime;
   
   // Pausa todos os players de música
@@ -1610,6 +1631,9 @@ function handleWheel(e) {
     }, 1000);
   }
 }
+
+let terceiraMusicaVisualizada = false;
+
 
     </script>
 </body>
